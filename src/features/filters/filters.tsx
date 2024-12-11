@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import styles from "./filters.module.scss";
 
 interface FiltersProps {
-  onChange: (stops: (number | null)[]) => void;
+  onChange: (stops: number[]) => void;
 }
 
 export const Filters: FC<FiltersProps> = ({ onChange }) => {

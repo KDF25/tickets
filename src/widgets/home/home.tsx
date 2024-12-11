@@ -8,16 +8,17 @@ import styles from "./home.module.scss";
 
 export const Home: FC = () => {
   const [filteredCards, setFilteredCards] = useState<ITicketCard[]>(
-    data.tickets,
+    data.tickets
   );
-  const [allCards] = useState<ITicketCard[]>(data.tickets);
-  const handleFilterCard = (stops: (number | null)[]) => {
-    if (stops.length === 0 || stops.includes(null)) {
-      setFilteredCards(allCards);
-    } else {
-      const newCards = allCards.filter((card) => stops.includes(card.stops));
-      setFilteredCards(newCards);
-    }
+  const [allCards] = useState<ITicketCard[]>(
+    data.tickets.sort((a, b) => a.price - b.price)
+  );
+  const handleFilterCard = (stops: number[]) => {
+    let newCards =
+      stops.length === 0
+        ? allCards
+        : allCards.filter((card) => stops.includes(card.stops));
+    setFilteredCards(newCards);
   };
 
   return (
